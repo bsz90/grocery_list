@@ -142,7 +142,7 @@ export const Items = ({
     <>
       <div className="my-14 w-3/4 overflow-hidden rounded-xl drop-shadow-lg">
         <div className="flex h-16 flex-col items-center justify-center rounded-t-xl bg-slate-500 text-white">
-          <h1 className="text-xl capitalize">{pageState}</h1>
+          <h1 className="text-2xl capitalize">{pageState}</h1>
         </div>
         <div className="flex h-full w-full flex-col gap-[1px] overflow-x-hidden overflow-y-scroll rounded-b-xl">
           {itemsToAdd.map(({ name, type, total, notes, checked }, id) => {
