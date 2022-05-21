@@ -19,7 +19,7 @@ function App() {
   });
 
   return (
-    <div className="h-screen w-full">
+    <div className="flex h-screen w-full flex-col items-center justify-items-stretch">
       <Header
         cart={cart}
         setCart={setCart}
@@ -27,32 +27,24 @@ function App() {
         unsavedCartChanges={unsavedCartChanges}
         setDisplayDiscardCartChanges={setDisplayDiscardCartChanges}
       />
-      <div className="flex h-auto w-full flex-col items-center justify-center gap-4">
-        {(() => {
-          if (
-            pageState === "landing" ||
-            pageState === "continue" ||
-            pageState === "home"
-          ) {
-            return (
-              <Landing pageState={pageState} setPageState={setPageState} />
-            );
-          }
-          if (pageState === "cart") {
-            return <Cart cart={cart} setCart={setCart} />;
-          }
-          return (
-            <Items
-              cart={cart}
-              setCart={setCart}
-              pageState={pageState}
-              setPageState={setPageState}
-              unsavedCartChanges={unsavedCartChanges}
-              setUnsavedCartChanges={setUnsavedCartChanges}
-            />
-          );
-        })()}
-      </div>
+      {(() => {
+        if (pageState === "landing" || pageState === "continue") {
+          return <Landing pageState={pageState} setPageState={setPageState} />;
+        }
+        if (pageState === "cart") {
+          return <Cart cart={cart} setCart={setCart} />;
+        }
+        return (
+          <Items
+            cart={cart}
+            setCart={setCart}
+            pageState={pageState}
+            setPageState={setPageState}
+            unsavedCartChanges={unsavedCartChanges}
+            setUnsavedCartChanges={setUnsavedCartChanges}
+          />
+        );
+      })()}
       <ConfirmDiscardCartChanges
         setPageState={setPageState}
         displayDiscardCartChanges={displayDiscardCartChanges}

@@ -131,16 +131,16 @@ export const Items = ({
   );
 
   return (
-    <div className="absolute top-0 flex w-full flex-col items-center justify-center gap-4 py-4">
-      <div className="w-3/4 overflow-hidden rounded-xl drop-shadow-lg">
-        <div className="mt-24 flex h-16 flex-col items-center justify-center rounded-t-xl bg-slate-500 text-white">
+    <>
+      <div className="my-14 w-3/4 overflow-hidden rounded-xl drop-shadow-lg">
+        <div className="flex h-16 flex-col items-center justify-center rounded-t-xl bg-slate-500 text-white">
           <h1 className="text-xl capitalize">{pageState}</h1>
         </div>
-        <div className="flex w-full flex-col gap-[1px]">
+        <div className="flex h-full w-full flex-col gap-[1px] overflow-x-hidden overflow-y-scroll rounded-b-xl">
           {itemsToAdd.map(({ name, type, total, notes, checked }, id) => {
             return (
               <div
-                className="flex h-full w-full flex-col items-center justify-center bg-white"
+                className="flex h-full w-full flex-col items-center justify-center bg-white pr-2"
                 key={id}
               >
                 <div className="flex h-16 w-full flex-none justify-between">
@@ -335,7 +335,7 @@ export const Items = ({
           })}
         </div>
       </div>
-      <div className="flex h-16 w-full grow flex-row items-center justify-center">
+      <div className="flex h-16 w-full grow flex-row items-center justify-center pt-8 pb-20">
         <ConfirmDiscardNotesChanges
           displayDiscardNotesChanges={displayDiscardNotesChanges}
           setDisplayDiscardNotesChanges={setDisplayDiscardNotesChanges}
@@ -352,6 +352,6 @@ export const Items = ({
           handleConfirmCartChange={handleConfirmCartChange}
         />
       </div>
-    </div>
+    </>
   );
 };

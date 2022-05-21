@@ -45,7 +45,7 @@ export const Header = ({
 
   return (
     <>
-      <div className="sticky top-0 z-20 flex h-20 w-full items-center justify-between bg-slate-700 px-4 drop-shadow-lg">
+      <div className="flex h-20 w-full shrink-0 items-center justify-between bg-slate-700 px-4 drop-shadow-lg">
         <div className="flex h-14 w-14 flex-col items-start justify-start">
           <button
             className="flex h-14 w-14 flex-none grow items-center justify-center"
@@ -153,7 +153,7 @@ export const Header = ({
         </div>
         <div
           className="flex h-full w-full items-center justify-center"
-          onClick={() => setPageState("home")}
+          onClick={() => setPageState("landing")}
         >
           <h1 className="text-3xl text-white">Grocery List</h1>
         </div>
@@ -176,7 +176,7 @@ export const Header = ({
         </button>
       </div>
       <div
-        className="relative box-border h-full w-full flex-none transition-all"
+        className="absolute box-border h-full w-full flex-none transition-all"
         style={{
           backgroundColor: dropdownIsOpen ? "black" : "none",
           opacity: dropdownIsOpen ? "0.3" : 0,
