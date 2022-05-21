@@ -140,7 +140,7 @@ export const Items = ({
           {itemsToAdd.map(({ name, type, total, notes, checked }, id) => {
             return (
               <div
-                className="flex h-full w-full flex-col items-center justify-center bg-white pr-2"
+                className="flex h-full w-full flex-col items-center justify-center bg-white"
                 key={id}
               >
                 <div className="flex h-16 w-full flex-none justify-between">

@@ -45,7 +45,7 @@ export const Header = ({
 
   return (
     <>
-      <div className="flex h-20 w-full shrink-0 items-center justify-between bg-slate-700 px-4 drop-shadow-lg">
+      <div className="z-20 flex h-20 w-full shrink-0 items-center justify-between bg-slate-700 px-4 drop-shadow-lg">
         <div className="flex h-14 w-14 flex-col items-start justify-start">
           <button
             className="flex h-14 w-14 flex-none grow items-center justify-center"
@@ -78,7 +78,7 @@ export const Header = ({
             </svg>
           </button>
           <div
-            className="relative z-20 mt-2 box-border flex flex-col items-center justify-center border bg-white pt-2 transition-all"
+            className="relative mt-2 box-border flex flex-col items-center justify-center border bg-white pt-2 transition-all"
             style={{ marginLeft: dropdownIsOpen ? "-16px" : "-210px" }}
           >
             <div className="box-content flex h-12 w-48 items-center justify-center overflow-hidden">
@@ -136,6 +136,7 @@ export const Header = ({
                       key={type}
                       className="flex h-12 w-48 items-center justify-start bg-white px-6 py-2 capitalize"
                       onClick={() => {
+                        console.log("click");
                         handleHamburgerClick(type);
                         setDropdownIsOpen(false);
                       }}
