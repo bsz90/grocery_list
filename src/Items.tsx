@@ -216,9 +216,9 @@ export const Items = ({
                       >
                         <path
                           stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2.5"
                           d="M17.25 12.25L6.75 12.25"
                         ></path>
                       </svg>
@@ -257,16 +257,16 @@ export const Items = ({
                       >
                         <path
                           stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2.5"
                           d="M12 5.75V18.25"
                         ></path>
                         <path
                           stroke="currentColor"
-                          stroke-linecap="round"
-                          stroke-linejoin="round"
-                          stroke-width="2.5"
+                          strokeLinecap="round"
+                          strokeLinejoin="round"
+                          strokeWidth="2.5"
                           d="M18.25 12L5.75 12"
                         ></path>
                       </svg>
