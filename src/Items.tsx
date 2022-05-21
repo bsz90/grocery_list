@@ -75,7 +75,9 @@ export const Items = ({
   unsavedCartChanges: boolean;
   setUnsavedCartChanges: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const currentPageItems = cart.filter((items) => items.type === pageState);
+  const [currentPageItems, setCurrentPageItems] = useState(
+    cart.filter((items) => items.type === pageState)
+  );
 
   const [itemsToAdd, dispatch] = useReducer(itemsReducer, currentPageItems);
 
@@ -104,17 +106,23 @@ export const Items = ({
     if (activeItem) return activeItem.notes !== notesToAdd;
   };
 
+  useEffect(
+    () => setCurrentPageItems(cart.filter((items) => items.type === pageState)),
+    [cart, pageState]
+  );
+
   useEffect(() => {
     function changesToCart() {
       const firstArray = itemsToAdd;
       const secondArray = currentPageItems;
 
-      for (let i = 0; i < firstArray.length; i++) {
-        const firstItem = firstArray[i];
-        const secondItem = secondArray[i];
+      if (firstArray.length !== secondArray.length)
+        for (let i = 0; i < firstArray.length; i++) {
+          const firstItem = firstArray[i];
+          const secondItem = secondArray[i];
 
-        if (firstItem.total !== secondItem.total) return true;
-      }
+          if (firstItem.total !== secondItem.total) return true;
+        }
 
       return false;
     }

@@ -136,7 +136,6 @@ export const Header = ({
                       key={type}
                       className="flex h-12 w-48 items-center justify-start bg-white px-6 py-2 capitalize"
                       onClick={() => {
-                        console.log("click");
                         handleHamburgerClick(type);
                         setDropdownIsOpen(false);
                       }}
