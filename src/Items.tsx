@@ -80,11 +80,11 @@ export const Items = ({
                 className="flex h-full w-full flex-col items-center justify-center bg-white"
                 key={id}
               >
-                <div className="flex h-16 w-full flex-none justify-between">
-                  <label className="flex w-32 flex-none items-center justify-start pl-8 capitalize">
-                    {name}
-                  </label>
-                  <div className="flex flex-none items-center justify-around">
+                <div className="flex w-full flex-none flex-wrap justify-center px-4">
+                  <div className="flex h-16 flex-none items-center justify-between capitalize">
+                    <label className="w-[90px] overflow-hidden text-ellipsis px-2">
+                      {name}
+                    </label>
                     <button
                       className="mr-2 flex h-8 w-8 items-center justify-center rounded-full"
                       onClick={() => {
@@ -136,6 +136,8 @@ export const Items = ({
                         ></path>
                       </svg>
                     </button>
+                  </div>
+                  <div className="flex h-16 flex-none items-center justify-around">
                     <button
                       onClick={() =>
                         dispatch({
@@ -143,7 +145,7 @@ export const Items = ({
                           payload: { name },
                         })
                       }
-                      className="mx-2 flex h-8 w-8 items-center justify-center rounded-full border bg-slate-500 text-white drop-shadow-sm"
+                      className="mx-1 flex h-8 w-8 items-center justify-center rounded-full border bg-slate-500 text-white drop-shadow-sm"
                     >
                       <svg
                         width="20"
@@ -162,7 +164,7 @@ export const Items = ({
                     </button>
                     <input
                       type="number"
-                      className=" w-12 bg-inherit text-center"
+                      className="w-8 bg-inherit text-center"
                       step="1"
                       min="0"
                       max="999"
@@ -184,7 +186,7 @@ export const Items = ({
                           payload: { name, type },
                         })
                       }
-                      className="mx-2 flex h-8 w-8 items-center justify-center rounded-full border bg-slate-500 text-center text-white drop-shadow-sm"
+                      className="mx-1 flex h-8 w-8 items-center justify-center rounded-full border bg-slate-500 text-center text-white drop-shadow-sm"
                     >
                       <svg
                         width="20"

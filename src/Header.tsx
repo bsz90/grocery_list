@@ -161,7 +161,7 @@ export const Header = ({
           className="flex h-full w-full items-center justify-center"
           onClick={() => setPageState("landing")}
         >
-          <h1 className="text-3xl text-white">Grocery List</h1>
+          <h1 className="text-center text-3xl text-white">Grocery List</h1>
         </div>
         <button
           className="flex h-14 w-14 flex-none items-center justify-center"
