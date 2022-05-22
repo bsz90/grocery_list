@@ -71,7 +71,7 @@ export const Cart = ({
   }
 
   return (
-    <div className="absolute top-20 flex w-3/4 flex-col items-center justify-center py-8">
+    <div className="absolute top-20 flex w-3/4 max-w-sm flex-col items-center justify-center py-8">
       <div className=" flex flex-col items-center justify-center">
         <h1 className="text-2xl capitalize">Your Cart</h1>
       </div>

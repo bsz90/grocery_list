@@ -69,7 +69,7 @@ export const Items = ({
 
   return (
     <>
-      <div className="my-14 w-3/4 overflow-hidden rounded-xl drop-shadow-lg">
+      <div className="my-14 w-3/4 max-w-sm overflow-hidden rounded-xl drop-shadow-lg">
         <div className="flex h-16 flex-col items-center justify-center rounded-t-xl bg-slate-500 text-white">
           <h1 className="text-2xl capitalize">{pageState}</h1>
         </div>
