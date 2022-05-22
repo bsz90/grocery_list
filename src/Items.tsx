@@ -50,15 +50,6 @@ export const Items = ({
     if (activeItem) return activeItem.notes !== notesToAdd;
   };
 
-  // useEffect(
-  //   () =>
-  //     dispatch({
-  //       type: ActionType.UPDATE,
-  //       payload: { name: undefined, cart, pageState },
-  //     }),
-  //   [cart, dispatch, pageState]
-  // );
-
   useEffect(() => {
     function changesToCart() {
       const firstArray = itemsToAdd;
