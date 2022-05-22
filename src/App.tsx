@@ -94,7 +94,14 @@ function App() {
       />
       {(() => {
         if (pageState === "landing" || pageState === "continue") {
-          return <Landing pageState={pageState} setPageState={setPageState} />;
+          return (
+            <Landing
+              pageState={pageState}
+              setPageState={setPageState}
+              cart={cart}
+              dispatch={dispatch}
+            />
+          );
         }
         if (pageState === "cart") {
           return <Cart cart={cart} setCart={setCart} />;

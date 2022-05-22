@@ -1,12 +1,17 @@
 import { Dispatch, SetStateAction } from "react";
 import { categories } from "./constants";
+import { Action, ActionType, CartItem } from "./types";
 
 export const Landing = ({
   pageState,
   setPageState,
+  cart,
+  dispatch,
 }: {
   pageState: string;
   setPageState: Dispatch<SetStateAction<string>>;
+  cart: CartItem[];
+  dispatch: Dispatch<Action>;
 }) => {
   return (
     <div className="my-14 flex w-3/4 flex-col items-center overflow-hidden rounded-xl drop-shadow-lg">
@@ -19,7 +24,13 @@ export const Landing = ({
             <button
               className="h-16 w-full flex-none bg-white capitalize drop-shadow-md"
               key={type}
-              onClick={() => setPageState(type)}
+              onClick={() => {
+                setPageState(type);
+                dispatch({
+                  type: ActionType.UPDATE,
+                  payload: { name: undefined, cart, newPageState: type },
+                });
+              }}
             >
               {type}
             </button>
