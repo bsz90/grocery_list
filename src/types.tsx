@@ -25,7 +25,7 @@ export type Action =
     }
   | {
       type: ActionType.UPDATE;
-      payload: { name: undefined; cart: CartItem[]; pageState: string };
+      payload: { name: undefined; cart: CartItem[]; newPageState: string };
     };
 
 export type CartAction =

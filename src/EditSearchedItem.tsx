@@ -39,8 +39,6 @@ export const EditSearchedItem = ({
 }) => {
   const [itemToEdit, dispatch] = useReducer(cartItemReducer, item);
 
-  console.log(`itemToEdit is ${itemToEdit.name}`);
-
   const handleCartItemEdit = () => {
     setCart((prev) => {
       const newCart = [...prev];

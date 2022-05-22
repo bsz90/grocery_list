@@ -1,70 +1,17 @@
-import { useState, useEffect, useReducer, SetStateAction } from "react";
+import { useState, useEffect, SetStateAction } from "react";
 import { ConfirmCart } from "./ConfirmCart";
 import { Dispatch } from "react";
-import { Action, CartItem, ActionType } from "./types";
+import { CartItem, ActionType, Action } from "./types";
 import { ConfirmDiscardNotesChanges } from "./ConfirmDiscardNotesChanges";
-
-function itemsReducer(itemsToAdd: CartItem[], { type, payload }: Action) {
-  const newState = (
-    determineTotal: number | ((prevTotal: number) => number)
-  ) => {
-    return itemsToAdd.map(({ name, type, total, notes, checked }) => {
-      if (name === payload.name) {
-        return {
-          name,
-          type,
-          total:
-            typeof determineTotal === "number"
-              ? determineTotal
-              : determineTotal(total),
-          notes,
-          checked,
-        };
-      } else return { name, type, total, notes, checked };
-    });
-  };
-
-  switch (type) {
-    case ActionType.INCREMENT: {
-      const determineTotal = (prevTotal: number) => prevTotal + 1;
-      return newState(determineTotal);
-    }
-    case ActionType.DECREMENT: {
-      const determineTotal = (prevTotal: number) =>
-        prevTotal > 0 ? prevTotal - 1 : 0;
-      return newState(determineTotal);
-    }
-    case ActionType.MANUAL_INPUT: {
-      const determineTotal = payload.total;
-      return newState(determineTotal);
-    }
-    case ActionType.ANNOTATE: {
-      const newAnnotateState = itemsToAdd.map(
-        ({ name, total, type, notes, checked }) => {
-          if (name === payload.name) {
-            return { name, total, type, notes: payload.notes, checked };
-          }
-          return { name, total, type, notes, checked };
-        }
-      );
-      return newAnnotateState;
-    }
-    case ActionType.UPDATE: {
-      const updatedState = payload.cart.filter(
-        (item) => item.type === payload.pageState
-      );
-      return updatedState;
-    }
-    default:
-      throw new Error();
-  }
-}
 
 export const Items = ({
   pageState,
   setPageState,
   cart,
   setCart,
+  currentPageItems,
+  itemsToAdd,
+  dispatch,
   unsavedCartChanges,
   setUnsavedCartChanges,
 }: {
@@ -72,15 +19,12 @@ export const Items = ({
   setPageState: Dispatch<SetStateAction<string>>;
   cart: CartItem[];
   setCart: Dispatch<SetStateAction<CartItem[]>>;
+  currentPageItems: CartItem[];
+  itemsToAdd: CartItem[];
+  dispatch: Dispatch<Action>;
   unsavedCartChanges: boolean;
   setUnsavedCartChanges: Dispatch<SetStateAction<boolean>>;
 }) => {
-  const [currentPageItems, setCurrentPageItems] = useState(
-    cart.filter((items) => items.type === pageState)
-  );
-
-  const [itemsToAdd, dispatch] = useReducer(itemsReducer, currentPageItems);
-
   const [displayConfirmDialog, setDisplayConfirmDialog] = useState(false);
 
   const [itemBeingEdited, setItemBeingEdited] = useState<string>();
@@ -106,37 +50,31 @@ export const Items = ({
     if (activeItem) return activeItem.notes !== notesToAdd;
   };
 
-  useEffect(
-    () => setCurrentPageItems(cart.filter((items) => items.type === pageState)),
-    [cart, pageState]
-  );
+  // useEffect(
+  //   () =>
+  //     dispatch({
+  //       type: ActionType.UPDATE,
+  //       payload: { name: undefined, cart, pageState },
+  //     }),
+  //   [cart, dispatch, pageState]
+  // );
 
   useEffect(() => {
     function changesToCart() {
       const firstArray = itemsToAdd;
       const secondArray = currentPageItems;
 
-      if (firstArray.length !== secondArray.length)
-        for (let i = 0; i < firstArray.length; i++) {
-          const firstItem = firstArray[i];
-          const secondItem = secondArray[i];
+      for (let i = 0; i < firstArray.length; i++) {
+        const firstItem = firstArray[i];
+        const secondItem = secondArray[i];
 
-          if (firstItem.total !== secondItem.total) return true;
-        }
+        if (firstItem.total !== secondItem.total) return true;
+      }
 
       return false;
     }
     setUnsavedCartChanges(changesToCart());
   }, [currentPageItems, itemBeingEdited, itemsToAdd, setUnsavedCartChanges]);
-
-  useEffect(
-    () =>
-      dispatch({
-        type: ActionType.UPDATE,
-        payload: { name: undefined, cart, pageState },
-      }),
-    [cart, pageState]
-  );
 
   return (
     <>

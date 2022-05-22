@@ -1,18 +1,20 @@
 import { Dispatch, SetStateAction, useState, useMemo } from "react";
 import { categories } from "./constants";
-import { CartItem } from "./types";
+import { Action, ActionType, CartItem } from "./types";
 import { EditSearchedItem } from "./EditSearchedItem";
 
 export const Header = ({
   cart,
   setCart,
   setPageState,
+  dispatch,
   unsavedCartChanges,
   setDisplayDiscardCartChanges,
 }: {
   cart: CartItem[];
   setCart: Dispatch<SetStateAction<CartItem[]>>;
   setPageState: Dispatch<SetStateAction<string>>;
+  dispatch: Dispatch<Action>;
   unsavedCartChanges: boolean;
   setDisplayDiscardCartChanges: Dispatch<
     SetStateAction<{ openState: boolean; nextPageState: string }>
@@ -32,8 +34,12 @@ export const Header = ({
     }
   };
 
-  const handleHamburgerClick = (newCategory: string) => {
-    setPageState(newCategory);
+  const handleHamburgerClick = (newPageState: string) => {
+    setPageState(newPageState);
+    dispatch({
+      type: ActionType.UPDATE,
+      payload: { name: undefined, cart, newPageState },
+    });
   };
 
   const searchResults = useMemo(() => {

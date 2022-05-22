@@ -233,7 +233,6 @@ export const Cart = ({
                             item.notes &&
                             (!item.checked || displayCheckedItems)
                           ) {
-                            console.log(item);
                             return (
                               <>
                                 <div className="flex h-full w-full justify-center px-4">
