@@ -81,12 +81,12 @@ export const Items = ({
                 key={id}
               >
                 <div className="flex w-full flex-none flex-wrap justify-center px-4">
-                  <div className="flex h-16 flex-none items-center justify-between capitalize">
-                    <label className="w-[90px] overflow-hidden text-ellipsis px-2">
+                  <div className="flex h-16 flex-none grow items-center justify-center capitalize">
+                    <label className="w-24 overflow-hidden text-ellipsis">
                       {name}
                     </label>
                     <button
-                      className="mr-2 flex h-8 w-8 items-center justify-center rounded-full"
+                      className="mx-1 flex h-8 w-8 items-center justify-center rounded-full"
                       onClick={() => {
                         if (unsavedNotesChanges()) {
                           setDisplayDiscardNotesChanges({
