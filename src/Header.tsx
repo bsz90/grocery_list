@@ -104,6 +104,7 @@ export const Header = ({
                 className="mx-2 box-border h-10 w-full rounded-full border-2 border-slate-400 bg-none px-2 indent-8"
                 placeholder="Search"
                 onChange={(event) => setSearchCriteria(event.target.value)}
+                disabled={!dropdownIsOpen}
               ></input>
             </div>
             <hr className="mt-2 w-5/6 bg-slate-500"></hr>
@@ -145,6 +146,7 @@ export const Header = ({
                         handleHamburgerClick(type);
                         setDropdownIsOpen(false);
                       }}
+                      disabled={!dropdownIsOpen}
                     >
                       {type}
                     </button>

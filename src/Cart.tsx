@@ -194,6 +194,7 @@ export const Cart = ({
                             <Checkbox.Root
                               className="flex h-4 w-4 items-center justify-center border-2 border-slate-600 bg-white"
                               checked={item.checked}
+                              disabled={item.checked && !displayCheckedItems}
                               onCheckedChange={() => handleCheckItem(item)}
                             >
                               <Checkbox.Indicator className="text-[10px]">
@@ -226,6 +227,7 @@ export const Cart = ({
                             setCart={setCart}
                             cartItemBeingEdited={cartItemBeingEdited}
                             setCartItemBeingEdited={setCartItemBeingEdited}
+                            displayCheckedItems={displayCheckedItems}
                           />
                         </div>
                         {(() => {

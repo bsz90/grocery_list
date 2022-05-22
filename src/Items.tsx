@@ -248,7 +248,9 @@ export const Items = ({
                       style={{
                         opacity: notesToAdd === notes ? 0.2 : 1,
                       }}
-                      disabled={notesToAdd === notes}
+                      disabled={
+                        notesToAdd === notes || itemBeingEdited !== name
+                      }
                     >
                       Confirm
                     </button>
@@ -264,6 +266,7 @@ export const Items = ({
                           setItemBeingEdited("");
                         }
                       }}
+                      disabled={itemBeingEdited !== name}
                     >
                       Cancel
                     </button>

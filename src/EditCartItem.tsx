@@ -28,12 +28,14 @@ export const EditCartItem = ({
   setCart,
   cartItemBeingEdited,
   setCartItemBeingEdited,
+  displayCheckedItems,
 }: {
   item: CartItem;
   cart: CartItem[];
   setCart: Dispatch<SetStateAction<CartItem[]>>;
   cartItemBeingEdited: string;
   setCartItemBeingEdited: Dispatch<SetStateAction<string>>;
+  displayCheckedItems: boolean;
 }) => {
   const [itemToEdit, dispatch] = useReducer(cartItemReducer, item);
 
@@ -54,6 +56,7 @@ export const EditCartItem = ({
       <Dialog.Trigger
         className="flex h-full w-8 items-center justify-center overflow-hidden"
         onClick={() => setCartItemBeingEdited(item.name)}
+        disabled={item.checked && !displayCheckedItems}
       >
         <svg
           className="flex-none"
