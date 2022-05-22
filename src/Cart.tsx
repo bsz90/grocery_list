@@ -189,8 +189,8 @@ export const Cart = ({
                             : 0,
                         }}
                       >
-                        <div className="box-border flex w-full flex-none origin-top items-center justify-start overflow-hidden  transition-all">
-                          <div className="top relative flex h-16 w-16 flex-none items-center justify-center">
+                        <div className="box-border flex w-full origin-top items-center justify-items-stretch overflow-hidden pl-4 pr-2 transition-all">
+                          <div className="relative flex h-16 w-12 flex-none items-center justify-center">
                             <Checkbox.Root
                               className="flex h-4 w-4 items-center justify-center border-2 border-slate-600 bg-white"
                               checked={item.checked}
@@ -215,7 +215,7 @@ export const Cart = ({
                             </Checkbox.Root>
                           </div>
                           <div
-                            className="box-border flex h-16 w-full items-center justify-start px-8 capitalize"
+                            className="box-border flex h-16 grow items-center justify-start overflow-hidden text-ellipsis whitespace-nowrap px-4 capitalize"
                             onClick={() => handleCheckItem(item)}
                           >
                             {item.total} {item.name}

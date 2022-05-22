@@ -52,7 +52,7 @@ export const EditCartItem = ({
   return (
     <Dialog.Root open={item.name === cartItemBeingEdited} modal={true}>
       <Dialog.Trigger
-        className="ml-4 flex h-12 w-8 flex-none items-center justify-center"
+        className="flex h-full w-8 items-center justify-center overflow-hidden"
         onClick={() => setCartItemBeingEdited(item.name)}
       >
         <svg
