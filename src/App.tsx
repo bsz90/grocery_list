@@ -1,4 +1,4 @@
-import { useMemo, useReducer, useState } from "react";
+import { useEffect, useMemo, useReducer, useState } from "react";
 import { Landing } from "./Landing";
 import { Items } from "./Items";
 import { items } from "./constants";
@@ -66,7 +66,15 @@ function itemsReducer(itemsToAdd: CartItem[], { type, payload }: Action) {
 function App() {
   const [pageState, setPageState] = useState("landing");
 
-  const [cart, setCart] = useState(items);
+  const [cart, setCart] = useState<CartItem[]>(() => {
+    try {
+      const previousCart = localStorage.getItem("cart");
+      return previousCart ? JSON.parse(previousCart) : items;
+    } catch (error) {
+      console.log("Error");
+      return items;
+    }
+  });
 
   const currentPageItems = useMemo(
     () => cart.filter((items) => items.type === pageState),
@@ -81,6 +89,8 @@ function App() {
     openState: false,
     nextPageState: "",
   });
+
+  useEffect(() => localStorage.setItem("cart", JSON.stringify(cart)), [cart]);
 
   return (
     <div className="flex h-screen w-full flex-col items-center justify-items-stretch">
