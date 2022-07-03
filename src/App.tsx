@@ -1,18 +1,19 @@
 import { useEffect, useMemo, useReducer, useState } from "react";
-import { Landing } from "./Landing";
+import { Categories } from "./Categories";
 import { Items } from "./Items";
 import { items } from "./constants";
 import { Header } from "./Header";
 import { Cart } from "./Cart";
 import { ConfirmDiscardCartChanges } from "./ConfirmDiscardCartChanges";
 import { Action, ActionType, CartItem } from "./types";
+import { Landing } from "./Landing";
 
 function itemsReducer(itemsToAdd: CartItem[], { type, payload }: Action) {
   const newState = (
     determineTotal: number | ((prevTotal: number) => number)
   ) => {
     return itemsToAdd.map(({ name, type, total, notes, checked }) => {
-      if (name === payload.name) {
+      if (name === payload!.name) {
         return {
           name,
           type,
@@ -58,6 +59,9 @@ function itemsReducer(itemsToAdd: CartItem[], { type, payload }: Action) {
       );
       return updatedState;
     }
+    case ActionType.RESET: {
+      return items;
+    }
     default:
       throw new Error();
   }
@@ -65,6 +69,10 @@ function itemsReducer(itemsToAdd: CartItem[], { type, payload }: Action) {
 
 function App() {
   const [pageState, setPageState] = useState("landing");
+
+  const [initialCart] = useState<boolean>(
+    localStorage.getItem("cart") ? true : false
+  );
 
   const [cart, setCart] = useState<CartItem[]>(() => {
     try {
@@ -90,22 +98,37 @@ function App() {
     nextPageState: "",
   });
 
-  useEffect(() => localStorage.setItem("cart", JSON.stringify(cart)), [cart]);
+  useEffect(() => {
+    localStorage.setItem("cart", JSON.stringify(cart));
+  }, [cart]);
 
   return (
     <div className="flex h-screen w-full flex-col items-center justify-items-stretch">
       <Header
         cart={cart}
         setCart={setCart}
+        pageState={pageState}
         setPageState={setPageState}
         dispatch={dispatch}
         unsavedCartChanges={unsavedCartChanges}
         setDisplayDiscardCartChanges={setDisplayDiscardCartChanges}
       />
       {(() => {
-        if (pageState === "landing" || pageState === "continue") {
+        if (pageState === "landing") {
           return (
             <Landing
+              initialCart={initialCart}
+              pageState={pageState}
+              setPageState={setPageState}
+              cart={cart}
+              setCart={setCart}
+              dispatch={dispatch}
+            />
+          );
+        }
+        if (pageState === "categories") {
+          return (
+            <Categories
               pageState={pageState}
               setPageState={setPageState}
               cart={cart}
@@ -114,7 +137,14 @@ function App() {
           );
         }
         if (pageState === "cart") {
-          return <Cart cart={cart} setCart={setCart} />;
+          return (
+            <Cart
+              cart={cart}
+              setCart={setCart}
+              setPageState={setPageState}
+              dispatch={dispatch}
+            />
+          );
         }
         return (
           <Items

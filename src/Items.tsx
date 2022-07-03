@@ -41,7 +41,7 @@ export const Items = ({
       const prevCart = prev.filter((item) => item.type !== pageState);
       return [...prevCart, ...itemsToAdd];
     });
-    setPageState("continue");
+    setPageState("categories");
     setUnsavedCartChanges(false);
   }
 

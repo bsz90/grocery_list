@@ -4,6 +4,7 @@ export enum ActionType {
   MANUAL_INPUT = "manual_input",
   ANNOTATE = "annotate",
   UPDATE = "update",
+  RESET = "reset",
 }
 
 export type Action =
@@ -26,6 +27,10 @@ export type Action =
   | {
       type: ActionType.UPDATE;
       payload: { name: undefined; cart: CartItem[]; newPageState: string };
+    }
+  | {
+      type: ActionType.RESET;
+      payload: null;
     };
 
 export type CartAction =

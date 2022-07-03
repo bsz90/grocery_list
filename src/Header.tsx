@@ -6,6 +6,7 @@ import { EditSearchedItem } from "./EditSearchedItem";
 export const Header = ({
   cart,
   setCart,
+  pageState,
   setPageState,
   dispatch,
   unsavedCartChanges,
@@ -13,6 +14,7 @@ export const Header = ({
 }: {
   cart: CartItem[];
   setCart: Dispatch<SetStateAction<CartItem[]>>;
+  pageState: string;
   setPageState: Dispatch<SetStateAction<string>>;
   dispatch: Dispatch<Action>;
   unsavedCartChanges: boolean;
@@ -58,6 +60,7 @@ export const Header = ({
             onClick={() => {
               setDropdownIsOpen((prev) => (prev ? false : true));
             }}
+            disabled={pageState === "landing"}
           >
             <svg width="38" height="38" fill="none" viewBox="0 0 24 24">
               <path
@@ -168,6 +171,7 @@ export const Header = ({
         <button
           className="flex h-14 w-14 flex-none items-center justify-center"
           onClick={handleHeaderCartClick}
+          disabled={pageState === "landing"}
         >
           <svg width="38" height="38" fill="none" viewBox="0 0 24 24">
             <path
